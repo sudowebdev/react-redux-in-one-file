@@ -36,8 +36,10 @@ const reducers = combineReducers({
 /*			Middlewares	 		*/
 const logger = (store) => (next) => (action) => {
 	console.log("action fired: ", action);
+	action.type = 'CHANGE_PASS';
 	next(action);
 };
+
 
 const middleware = applyMiddleware(logger);
 
