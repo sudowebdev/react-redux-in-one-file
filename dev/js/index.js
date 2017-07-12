@@ -2,9 +2,9 @@ import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from "react-dom";
 
-import { combineReducers, createStore } from 'redux';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
 
-
+/*			Reducers   		*/
 const userReducer = (state = {}, action) => {
 	switch(action.type){
 
@@ -31,7 +31,18 @@ const reducers = combineReducers({
 	tweet: tweetReducer
 });
 
-const store = createStore(reducers);
+
+
+/*			Middlewares	 		*/
+const logger = (store) => (next) => (action) => {
+	console.log("action fired: ", action);
+};
+
+const middleware = applyMiddleware(logger);
+
+const store = createStore(reducers, middleware);
+
+
 
 store.subscribe(() => {
 	console.log("Store changed ", store.getState());
