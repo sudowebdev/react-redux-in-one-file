@@ -21,6 +21,10 @@ const userReducer = (state = {}, action) => {
 			state = {...state, pass: action.payload};
 			break;
 		}
+		case 'E': {
+			throw new Error('Errorrrrr!!!');
+			break;
+		}
 	}
 
 	return state;
@@ -46,12 +50,20 @@ const reducers = combineReducers({
 
 const logger = (store) => (next) => (action) => {
 	console.log("action fired: ", action);
-	action.type = 'CHANGE_PASS';
+	
 	next(action);
 };
 
+const errorHandler = (store) => (next) => (action) => {
+	
+	try{
+		next(action);
+	}catch(e){
+		console.log("Error catched is: ", e);
+	}
+}
 
-const middleware = applyMiddleware(logger);
+const middleware = applyMiddleware(logger, errorHandler);
 
 const store = createStore(reducers, middleware);
 
@@ -64,3 +76,4 @@ store.subscribe(() => {
 
 store.dispatch({type: 'CHANGE_USERNAME', payload: 'iamoperand'});
 store.dispatch({type: 'CHANGE_PASS', payload: 'pass123'});
+store.dispatch({type: 'E', payload: 'Nothing here'});
