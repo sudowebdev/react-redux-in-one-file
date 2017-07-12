@@ -10,11 +10,11 @@ const userReducer = (state = {}, action) => {
 
 
 		case 'CHANGE_USERNAME': {
-			state.username = action.payload;
+			state = {...state, username: action.payload};
 			break;
 		}
 		case 'CHANGE_PASS': {
-			state.pass = action.payload;
+			state = {...state, pass: action.payload};
 			break;
 		}
 	}
