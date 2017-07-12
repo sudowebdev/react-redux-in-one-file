@@ -4,7 +4,11 @@ import ReactDOM from "react-dom";
 
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 
-/*			Reducers   		*/
+/*			
+	Reducers   		
+	Reducers lie between the Actions and the Store.
+*/
+
 const userReducer = (state = {}, action) => {
 	switch(action.type){
 
@@ -33,7 +37,13 @@ const reducers = combineReducers({
 
 
 
-/*			Middlewares	 		*/
+/*			
+
+	Middlewares: Intercepts every action 
+	(lies between the stage when action gets fired and where the action gets served i.e. in the reducer)
+
+*/
+
 const logger = (store) => (next) => (action) => {
 	console.log("action fired: ", action);
 	action.type = 'CHANGE_PASS';
