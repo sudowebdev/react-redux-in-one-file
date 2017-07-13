@@ -52,6 +52,8 @@ There are basically **3 types of packages** related to **Redux**:
 2. ***redux-middlewareName***: These types of packages are made specially for **redux middlewares**. Examples of which are redux-logger, redux-thunk, etc...  
 3. ***react-redux***: The functions defined in this category are used for **connecting your React app to Redux**. For example: connect, etc...  
 
+**Well, as in every case, there always are exceptions...**
+
 
 ## Promise Middleware
 
