@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import { changeUsername } from '../actions/userActions';
 import { bindActionCreators } from 'redux';
 
-@connect((store) => {
+@connect((state) => {
 	return {
-		user: store.user,
-		tweet: store.tweet
+		user: state.user,
+		tweet: state.tweet
 	};
 	
 }, (dispatch) => {
