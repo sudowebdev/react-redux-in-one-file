@@ -19,7 +19,7 @@ Start the development server (changes will now update live in browser)
 To view your project, go to: [http://localhost:3000/](http://localhost:3000/)
 
 
-## Commit history
+## Commit history (listing important things done in respective commits)
 
 #### Commit 1: 
 [Default environment set-up](https://github.com/sudowebdev/react-redux-default-environment)
