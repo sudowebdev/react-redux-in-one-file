@@ -5,6 +5,8 @@ import ReactDOM from "react-dom";
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
+import promise from 'redux-promise-middleware';
+import axios from 'axios';
 
 /*			
 	Reducers   		
@@ -27,6 +29,11 @@ const userReducer = (state = {}, action) => {
 			throw new Error('Errorrrrr!!!');
 			break;
 		}
+		case 'FOO_PENDING':{
+			state = {...state, pass: 'helloFromPromise'};
+			break;
+		}
+		
 	}
 
 	return state;
@@ -61,7 +68,7 @@ const errorHandler = (store) => (next) => (action) => {
 	}
 }
 
-const middleware = applyMiddleware(thunk, logger(), errorHandler);
+const middleware = applyMiddleware(promise(), thunk, logger(), errorHandler);
 
 const store = createStore( reducers, middleware);
 
@@ -82,5 +89,10 @@ store.dispatch((dispatch) => {
 
 	dispatch({type: 'CHANGE_PASS', payload: 'thunkpass'});
 
+});
+
+store.dispatch({
+	type:'FOO', 
+	payload: axios.get('https://rest.learncode.academy/api/wstern/users')
 });
 //store.dispatch({type: 'E', payload: 'Nothing here'});
