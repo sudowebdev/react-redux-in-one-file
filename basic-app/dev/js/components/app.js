@@ -14,11 +14,11 @@ import { changeUsername } from '../actions/userActions';
 
 export default class App extends React.Component{
 	
-	
+
 
 	render(){
 		console.log(this.props);
-		return null;
+		return (<div>{this.props.user.username}</div>);
 		
 	}
 
