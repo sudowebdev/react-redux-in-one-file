@@ -17,6 +17,11 @@ import { bindActionCreators } from 'redux';
 	return bindActionCreators({changeUsername: changeUsername}, dispatch);
 })
 
+
+/*
+Dumb Component alone
+It is the connect decorator that makes it a smart component
+*/
 export default class App extends React.Component{
 	
 
