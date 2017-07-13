@@ -5,13 +5,15 @@ import { connect } from 'react-redux';
 import { changeUsername } from '../actions/userActions';
 import { bindActionCreators } from 'redux';
 
-@connect((state) => {
+@connect((state) => { 
+	//mapStateToProps(){}
 	return {
 		user: state.user,
 		tweet: state.tweet
 	};
 	
 }, (dispatch) => {
+	//mapDispatchToProps(){}
 	return bindActionCreators({changeUsername: changeUsername}, dispatch);
 })
 
