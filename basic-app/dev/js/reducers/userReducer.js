@@ -2,7 +2,7 @@
 	Reducers   		
 	Reducers lie between the Actions and the Store.
 */
-export default const userReducer = (state = {}, action) => {
+export default function userReducer(state = {}, action){
 	switch(action.type){
 
 

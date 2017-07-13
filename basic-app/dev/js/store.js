@@ -20,4 +20,4 @@ const errorHandler = (store) => (next) => (action) => {
 
 const middleware = applyMiddleware(logger(), thunk, errorHandler);
 
-export default const store = createStore(reducers, middleware);
+export default createStore(reducers, middleware);
