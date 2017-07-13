@@ -52,3 +52,10 @@ There are basically **3 types of packages** related to **Redux**:
 2. ***redux-middlewareName***: These types of packages are made specially for **redux middlewares**. Examples of which are redux-logger, redux-thunk, etc...  
 3. ***react-redux***: The functions defined in this category are used for **connecting your React app to Redux**. For example: connect, etc...  
 
+
+## Promise Middleware
+
+If you are using thunk just to serve a **single xhr request**, then there is a more **elucid** implementation of it with **promise** middleware.  
+So, at the time of using promise-middleware, just write a **simple action-creator** which returns an **action as an object** (just like before). The **difference** comes only at the time of writing the **value of payload**. So, promise middleware comes into action whenever it sees a **payload that is a promise type** and thus will **dispatch some default actions**. 
+
+So, if you are using **'FOO'** as type, then it will dispatch actions with 'FOO_PENDING' type and then 'FOO_FULLFILLED' or 'FOO_REJECTED' as and when the request gets served or not.
