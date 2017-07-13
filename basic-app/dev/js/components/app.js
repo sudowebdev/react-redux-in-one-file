@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { changeUsername } from '../actions/userActions';
+import { bindActionCreators } from 'redux';
 
 @connect((store) => {
 	return {
@@ -10,6 +11,8 @@ import { changeUsername } from '../actions/userActions';
 		tweet: store.tweet
 	};
 	
+}, (dispatch) => {
+	return bindActionCreators({changeUsername: changeUsername}, dispatch);
 })
 
 export default class App extends React.Component{
@@ -23,6 +26,6 @@ export default class App extends React.Component{
 	}
 
 	componentDidMount(){
-		this.props.dispatch(changeUsername());
+		this.props.changeUsername();
 	}
 }
