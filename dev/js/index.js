@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
+import thunk from 'redux-thunk';
 
 /*			
 	Reducers   		
@@ -60,9 +61,9 @@ const errorHandler = (store) => (next) => (action) => {
 	}
 }
 
-const middleware = applyMiddleware(logger(), errorHandler);
+const middleware = applyMiddleware(thunk, logger(), errorHandler);
 
-const store = createStore(reducers, middleware);
+const store = createStore( reducers, middleware);
 
 
 
@@ -73,4 +74,13 @@ store.subscribe(() => {
 
 store.dispatch({type: 'CHANGE_USERNAME', payload: 'iamoperand'});
 store.dispatch({type: 'CHANGE_PASS', payload: 'pass123'});
+
+store.dispatch((dispatch) => {
+	dispatch({type: 'CHANGE_USERNAME', payload: 'thunkusername'});
+
+	//do something async from any xhr request manager
+
+	dispatch({type: 'CHANGE_PASS', payload: 'thunkpass'});
+
+});
 //store.dispatch({type: 'E', payload: 'Nothing here'});
