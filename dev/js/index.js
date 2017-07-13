@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from "react-dom";
 
 import { combineReducers, createStore, applyMiddleware } from 'redux';
+import logger from 'redux-logger';
 
 /*			
 	Reducers   		
@@ -48,11 +49,7 @@ const reducers = combineReducers({
 
 */
 
-const logger = (store) => (next) => (action) => {
-	console.log("action fired: ", action);
-	
-	next(action);
-};
+
 
 const errorHandler = (store) => (next) => (action) => {
 	
@@ -63,7 +60,7 @@ const errorHandler = (store) => (next) => (action) => {
 	}
 }
 
-const middleware = applyMiddleware(logger, errorHandler);
+const middleware = applyMiddleware(logger(), errorHandler);
 
 const store = createStore(reducers, middleware);
 
@@ -76,4 +73,4 @@ store.subscribe(() => {
 
 store.dispatch({type: 'CHANGE_USERNAME', payload: 'iamoperand'});
 store.dispatch({type: 'CHANGE_PASS', payload: 'pass123'});
-store.dispatch({type: 'E', payload: 'Nothing here'});
+//store.dispatch({type: 'E', payload: 'Nothing here'});
